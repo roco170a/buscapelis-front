@@ -1,0 +1,58 @@
+.search-page {
+  padding: 2rem 0;
+}
+
+.search-results {
+  animation: fadeIn 0.5s ease-in;
+}
+
+.search-title {
+  color: #1a3977;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.no-results {
+  background-color: #f8f9fa;
+  border-radius: 0.5rem;
+  padding: 3rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.no-results-icon {
+  color: #6c757d;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.no-results-text {
+  color: #6c757d;
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.result-count {
+  margin-bottom: 1.5rem;
+  color: #6c757d;
+  font-size: 1rem;
+}
+
+.filter-bar {
+  background-color: #f8f9fa;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .search-page {
+    padding: 1rem 0;
+  }
+
+  .search-title {
+    font-size: 1.8rem;
+  }
+} 

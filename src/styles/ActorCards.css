@@ -1,0 +1,84 @@
+/* Estilos específicos para las tarjetas de actores en la página de detalle de película */
+.movie-detail-actor-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: none;
+  height: 100%;
+}
+
+.movie-detail-actor-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.movie-detail-actor-photo {
+  height: 260px;
+  width: 100%;
+  object-fit: cover;
+  object-position: top;
+  transition: all 0.4s ease;
+}
+
+.movie-detail-actor-card:hover .movie-detail-actor-photo {
+  transform: scale(1.1);
+  height: 300px; /* Se expande al hacer hover */
+}
+
+.movie-detail-actor-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
+  color: white;
+  padding: 1rem;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.movie-detail-actor-card:hover .movie-detail-actor-info {
+  opacity: 0;
+  transform: translateY(100%);
+}
+
+.movie-detail-actor-name {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: white;
+}
+
+.movie-detail-actor-character {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* Etiqueta que aparece al hacer hover */
+.movie-detail-actor-hover-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(26, 57, 119, 0.8);
+  color: white;
+  text-align: center;
+  padding: 0.5rem;
+  transform: translateY(-100%);
+  transition: transform 0.3s ease;
+}
+
+.movie-detail-actor-card:hover .movie-detail-actor-hover-label {
+  transform: translateY(0);
+}
+
+/* Media query para dispositivos móviles */
+@media (max-width: 767px) {
+  .movie-detail-actor-photo {
+    height: 220px;
+  }
+  
+  .movie-detail-actor-card:hover .movie-detail-actor-photo {
+    height: 250px;
+  }
+} 

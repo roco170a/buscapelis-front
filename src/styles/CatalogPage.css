@@ -1,0 +1,69 @@
+.catalog-container {
+  padding: 3rem 0;
+}
+
+.catalog-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1a3977;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.genres-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.genre-card {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  height: 100%;
+}
+
+.genre-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.genre-card-body {
+  padding: 1.5rem;
+}
+
+.genre-card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1a3977;
+  margin-bottom: 0.5rem;
+}
+
+.genre-card-count {
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+.genre-card-link {
+  display: block;
+  padding: 0.75rem 0;
+  text-align: center;
+  background-color: #f8f9fa;
+  color: #1a3977;
+  font-weight: 600;
+  text-decoration: none;
+  border-top: 1px solid #e9ecef;
+}
+
+.genre-card-link:hover {
+  background-color: #e9ecef;
+  color: #12295a;
+}
+
+@media (max-width: 576px) {
+  .genres-grid {
+    grid-template-columns: 1fr;
+  }
+} 

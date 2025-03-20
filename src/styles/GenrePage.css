@@ -1,0 +1,93 @@
+.genre-page-container {
+  padding: 3rem 0;
+}
+
+.genre-header {
+  background-color: #1a3977;
+  color: white;
+  padding: 2rem 0;
+  margin-bottom: 2rem;
+  border-radius: 0.5rem;
+}
+
+.genre-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.genre-description {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  opacity: 0.9;
+}
+
+.filter-section {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 0.5rem;
+}
+
+.filter-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.filter-button {
+  background-color: white;
+  border: 1px solid #ced4da;
+  color: #495057;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.filter-button.active {
+  background-color: #1a3977;
+  border-color: #1a3977;
+  color: white;
+}
+
+.sort-section {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.sort-label {
+  margin-right: 1rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.sort-select {
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  border: 1px solid #ced4da;
+}
+
+.no-movies {
+  text-align: center;
+  padding: 3rem;
+  background-color: #f8f9fa;
+  border-radius: 0.5rem;
+  color: #6c757d;
+}
+
+@media (max-width: 768px) {
+  .genre-title {
+    font-size: 2rem;
+  }
+  
+  .sort-section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .sort-label {
+    margin-bottom: 0.5rem;
+  }
+} 

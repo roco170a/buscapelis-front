@@ -1,0 +1,61 @@
+.navbar {
+  background-color: #1a3977;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: white !important;
+}
+
+.nav-link {
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85) !important;
+  transition: color 0.3s;
+  padding: 0.5rem 1rem;
+  margin: 0 0.2rem;
+}
+
+.nav-link:hover, .dropdown-item:hover {
+  color: #1a3977 !important;
+  background-color: white !important;
+}
+
+.navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.navbar-toggler-icon {
+  color: white;
+}
+
+/* Estilos para los dropdowns */
+.dropdown-menu {
+  background-color: #1d4190 !important;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 0.25rem;
+  padding: 0.5rem 0;
+}
+
+.dropdown-item {
+  color: rgba(255, 255, 255, 0.85) !important;
+  padding: 0.5rem 1rem;
+  transition: all 0.2s ease;
+}
+
+.dropdown-divider {
+  border-top-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Activo */
+.dropdown-item.active, .dropdown-item:active {
+  background-color: #2a56b5;
+  color: white !important;
+}
+
+/* Deshabilitado */
+.dropdown-item.disabled {
+  color: rgba(255, 255, 255, 0.5) !important;
+} 

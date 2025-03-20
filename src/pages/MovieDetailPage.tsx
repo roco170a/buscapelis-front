@@ -26,7 +26,7 @@ const MovieDetailPage: React.FC = () => {
         if (response.success) {
           setMovie(response.data);
           
-          // Obtener datos adicionales de actores para obtener sus fotos
+          // RCC Get additional actor data to obtain their photos
           const actorsResponse = await getActors();
           if (actorsResponse.success && actorsResponse.data.length > 0) {
             setActorsInfo(actorsResponse.data);
@@ -69,12 +69,12 @@ const MovieDetailPage: React.FC = () => {
     );
   }
 
-  // URL de imagen fallback en caso de que la película no tenga una
+  // RCC Fallback image URL in case the movie doesn't have one
   const imageFallback = '/placeholder-movie.png';
-  // URL de imagen fallback para actores sin foto
+  // RCC Fallback image URL for actors without a photo
   const actorImageFallback = '/placeholder-actor.png';
 
-  // Función para obtener la URL de foto de un actor
+  // RCC Function to get the photo URL of an actor
   const getActorPhotoUrl = (actorId: number): string => {
     const actor = actorsInfo.find(a => a.id === actorId);
     return actor?.fotoUrl || actorImageFallback;

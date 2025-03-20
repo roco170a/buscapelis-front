@@ -1,4 +1,4 @@
-/* Estilos para el catálogo de películas */
+/* RCC Styles for the movie catalog */
 .movie-catalog-page {
   min-height: 80vh;
 }
@@ -10,7 +10,7 @@
   margin-bottom: 1rem;
 }
 
-/* Estilos para la tabla */
+/* RCC Styles for the table */
 .movie-catalog-page .table {
   margin-bottom: 0;
 }
@@ -33,7 +33,7 @@
   background-color: rgba(0, 123, 255, 0.05);
 }
 
-/* Estilos para tarjetas de películas */
+/* RCC Styles for movie cards */
 .movie-card {
   border-radius: 0.5rem;
   overflow: hidden;
@@ -50,7 +50,7 @@
 
 .movie-poster {
   position: relative;
-  padding-top: 150%; /* Proporción de aspecto 2:3 para pósters */
+  padding-top: 150%; /* RCC 2:3 aspect ratio for posters */
   overflow: hidden;
   background-color: #f8f9fa;
 }
@@ -99,7 +99,7 @@
   border-radius: 1rem;
 }
 
-/* Estilos para botones */
+/* RCC Styles for buttons */
 .movie-catalog-page .btn-primary {
   background-color: #007bff;
   border-color: #007bff;
@@ -130,7 +130,7 @@
   border-color: #bd2130;
 }
 
-/* Estilos para el formulario y modales */
+/* RCC Styles for forms and modals */
 .modal-content {
   border-radius: 0.5rem;
   border: none;
@@ -158,7 +158,7 @@
   padding: 1rem;
 }
 
-/* Estilos para formularios */
+/* RCC Styles for forms */
 .form-label {
   color: #495057;
   font-weight: 500;
@@ -173,7 +173,7 @@
   font-size: 0.8rem;
 }
 
-/* Estilos para alertas */
+/* RCC Styles for alerts */
 .alert {
   margin-bottom: 1.5rem;
   border-radius: 0.25rem;
@@ -191,7 +191,7 @@
   color: #721c24;
 }
 
-/* Estilos responsivos */
+/* RCC Responsive styles */
 @media (max-width: 992px) {
   .movie-card-grid {
     grid-template-columns: repeat(3, 1fr);

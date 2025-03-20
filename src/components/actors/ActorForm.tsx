@@ -19,19 +19,19 @@ const ActorForm: React.FC<ActorFormProps> = ({ actor, onSave, onCancel }) => {
   
   useEffect(() => {
     if (actor) {
-      // Si existe un actor, configuramos los datos del formulario
+      // RCC If an actor exists, we set up the form data
       setFormData({
         nombre: actor.nombre || '',
         biografia: actor.biografia || '',
         fotoUrl: actor.fotoUrl || ''
       });
       
-      // Si tiene una URL de foto, activamos la vista previa
+      // RCC If it has a photo URL, we activate the preview
       if (actor.fotoUrl) {
         setPreviewing(true);
       }
     } else {
-      // Si estamos creando un nuevo actor, reseteamos el formulario
+      // RCC If we're creating a new actor, we reset the form
       setFormData({
         nombre: '',
         biografia: '',
@@ -78,7 +78,7 @@ const ActorForm: React.FC<ActorFormProps> = ({ actor, onSave, onCancel }) => {
       [name]: value
     });
     
-    // Limpiar el error cuando se modifica el campo
+    // RCC Clear the error when the field is modified
     if (errors[name]) {
       setErrors({
         ...errors,
@@ -86,7 +86,7 @@ const ActorForm: React.FC<ActorFormProps> = ({ actor, onSave, onCancel }) => {
       });
     }
     
-    // Si es la URL de la foto y no está vacía, intentamos previsualizar
+    // RCC If it's the photo URL and it's not empty, we try to preview
     if (name === 'fotoUrl') {
       setPreviewing(value.trim() !== '');
     }
@@ -96,10 +96,10 @@ const ActorForm: React.FC<ActorFormProps> = ({ actor, onSave, onCancel }) => {
     e.preventDefault();
     
     if (validateForm()) {
-      // Si estamos editando, asegurarse de que estamos incluyendo
-      // todos los datos originales que no modificamos
+      // RCC If we're editing, make sure we're including
+      // RCC all the original data that we didn't modify
       if (actor) {
-        // Conservar el ID original para evitar errores de validación en el backend
+        // RCC Preserve the original ID to avoid validation errors in the backend
         onSave({
           ...formData
         });

@@ -30,13 +30,13 @@ const MovieForm: React.FC<MovieFormProps> = ({ movie, onSave, onCancel }) => {
     const fetchData = async () => {
       setLoadingData(true);
       try {
-        // Cargar géneros
+        // RCC Load genres
         const genresResponse = await getGenres();
         if (genresResponse.success) {
           setAllGenres(genresResponse.data);
         }
         
-        // Cargar actores
+        // RCC Load actors
         const actorsResponse = await getActors();
         if (actorsResponse.success) {
           setAllActors(actorsResponse.data);
@@ -53,7 +53,7 @@ const MovieForm: React.FC<MovieFormProps> = ({ movie, onSave, onCancel }) => {
   
   useEffect(() => {
     if (movie) {
-      // Si existe una película, configuramos los datos del formulario
+      // RCC If there is a movie, we configure the form data
       setFormData({
         titulo: movie.titulo || '',
         sinopsis: movie.sinopsis || '',
@@ -67,12 +67,12 @@ const MovieForm: React.FC<MovieFormProps> = ({ movie, onSave, onCancel }) => {
         })) : []
       });
       
-      // Si tiene una URL de imagen, activamos la vista previa
+      // RCC If there is an image URL, we activate the preview
       if (movie.imagenUrl) {
         setPreviewing(true);
       }
     } else {
-      // Si estamos creando una nueva película, reseteamos el formulario
+      // RCC If we are creating a new movie, we reset the form
       setFormData({
         titulo: '',
         sinopsis: '',
@@ -142,7 +142,7 @@ const MovieForm: React.FC<MovieFormProps> = ({ movie, onSave, onCancel }) => {
       });
     }
     
-    // Limpiar el error cuando se modifica el campo
+    // RCC Clean the error when the field is modified
     if (errors[name]) {
       setErrors({
         ...errors,
@@ -150,7 +150,7 @@ const MovieForm: React.FC<MovieFormProps> = ({ movie, onSave, onCancel }) => {
       });
     }
     
-    // Si es la URL de la imagen y no está vacía, intentamos previsualizar
+    // RCC If the image URL is not empty, we try to preview
     if (name === 'imagenUrl') {
       setPreviewing(value.trim() !== '');
     }
@@ -181,35 +181,33 @@ const MovieForm: React.FC<MovieFormProps> = ({ movie, onSave, onCancel }) => {
   
   const handleAddActor = () => {
     if (newActor.actorId && newActor.personaje.trim()) {
-      // Verificar si ya existe este actor
+      // RCC Check if the actor already exists
       const actorExists = formData.actores.some(a => a.actorId === newActor.actorId);
       
       if (!actorExists) {
-        // Obtener datos completos del actor seleccionado
+        // RCC Get the complete actor data
         const actorData = allActors.find(a => a.id === newActor.actorId);
-        console.log('Actor seleccionado:', actorData);
+        //('Actor seleccionado:', actorData);
         
-        // Crear el nuevo actor con estructura completa
+        // RCC Create the new actor with complete structure
         const nuevoActor = { 
           actorId: newActor.actorId,
           personaje: newActor.personaje.trim(),
-          // Agregar el nombreActor aquí también para tenerlo desde el principio
+          // RCC Add the nombreActor here also to have it from the beginning
           nombreActor: actorData?.nombre || 'Actor desconocido'
         };
         
-        // Añadir actor con todos los datos necesarios
-        const updatedActores = [...formData.actores, nuevoActor];
+        // RCC Add the actor with all the necessary data
+        //const updatedActores = [...formData.actores, nuevoActor];
         
-        console.log('Actores actuales:', formData.actores);
-        console.log('Lista actualizada de actores:', updatedActores);
         
-        // Actualizar todo el estado formData con los nuevos actores
+        // RCC Update the entire formData state with the new actors
         setFormData(prevState => ({
           ...prevState,
           actores: [...prevState.actores, nuevoActor]
         }));
         
-        // Resetear el formulario de actor
+        // RCC Reset the actor form
         setNewActor({ actorId: 0, personaje: '' });
       }
     }
@@ -224,14 +222,9 @@ const MovieForm: React.FC<MovieFormProps> = ({ movie, onSave, onCancel }) => {
   
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
-    console.log('=== FORMULARIO AL ENVIAR ===');
-    console.log('formData completo:', formData);
-    console.log('Actores en formData:', formData.actores);
-    
     if (validateForm()) {
-      // Asegurarse de que los actores tienen la estructura correcta
-      // y evitar la mutación del estado original
+      // RCC Ensure that the actors have the correct structure
+      // and avoid the mutation of the original state
       const actoresFormatted = formData.actores.map(actor => {
         const actorData = allActors.find(a => a.id === actor.actorId);
         return {
@@ -241,9 +234,7 @@ const MovieForm: React.FC<MovieFormProps> = ({ movie, onSave, onCancel }) => {
         };
       });
       
-      console.log('Actores formateados:', actoresFormatted);
-      
-      // Preparar objeto con formato correcto para API
+      // RCC Prepare the object with the correct format for the API
       const movieData = {
         ...formData,
         // Convertir géneros al formato requerido por la API, incluyendo nombreGenero
@@ -254,16 +245,11 @@ const MovieForm: React.FC<MovieFormProps> = ({ movie, onSave, onCancel }) => {
             nombreGenero: genreData?.nombre || 'Género desconocido' // Incluir el nombre del género
           };
         }),
-        // Usar los actores ya formateados
+        // RCC Use the already formatted actors
         actores: actoresFormatted
       };
       
-      console.log('=== DATOS FINALES A ENVIAR ===');
-      console.log('Enviando datos de película:', movieData);
-      console.log('Datos de actores enviados:', JSON.stringify(movieData.actores, null, 2));
-      console.log('============================');
-      
-      // Si estamos editando, incluir el ID
+      // RCC If we are editing, include the ID
       if (movie) {
         onSave({
           id: movie.id,

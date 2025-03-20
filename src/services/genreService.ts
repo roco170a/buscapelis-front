@@ -8,7 +8,7 @@ export const getGenres = async () => {
   } catch (error: any) {
     console.error('Error fetching genres:', error);
     
-    // Crear una respuesta de error formateada
+    // RCC Create a formatted error response
     return {
       success: false,
       message: error.response?.data?.message || 'Error al obtener los géneros',
@@ -36,16 +36,13 @@ export const getGenreById = async (id: number) => {
 
 export const createGenre = async (genreData: any) => {
   try {
-    console.log('Datos enviados al crear género:', genreData);
     const response = await apiClient.post<GenreResponse>('/Generos', genreData);
     return response.data;
   } catch (error: any) {
-    console.error('Error creating genre:', error);
-    console.error('Response data:', error.response?.data);
     let errorMessages: string[] = ['Error de conexión con el servidor'];
     let errorMessage = 'Error al crear el género';
 
-    // Si es 401 agregar mensaje de no autorizado
+    // RCC If 401 add unauthorized message
     if (error.status === 401) {
       errorMessages = ['No tienes permisos para realizar esta acción, favor de iniciar sesión'];
       errorMessage = 'No tienes permisos para realizar esta acción, favor de iniciar sesión';
@@ -61,17 +58,14 @@ export const createGenre = async (genreData: any) => {
 
 export const updateGenre = async (id: number, genreData: any) => {
   try {
-    console.log(`Datos enviados al actualizar género ${id}:`, genreData);
     const response = await apiClient.put<GenreResponse>(`/Generos/${id}`, genreData);
     return response.data;
   } catch (error: any) {
-    console.error(`Error updating genre with id ${id}:`, error);
-    console.error('Response data:', error.response?.data);
     
     let errorMessages: string[] = ['Error de conexión con el servidor'];
     let errorMessage = `Error al actualizar el género con ID ${id}`;
 
-    // Si es 401 agregar mensaje de no autorizado
+    // RCC If 401 add unauthorized message
     if (error.status === 401) {
       errorMessages = ['No tienes permisos para realizar esta acción, favor de iniciar sesión'];
       errorMessage = 'No tienes permisos para realizar esta acción, favor de iniciar sesión';
@@ -96,7 +90,7 @@ export const deleteGenre = async (id: number) => {
 
     console.error(`Error deleting genre with id ${id}:`, error);
 
-    // Si es 401 agregar mensaje de no autorizado
+    // RCC If 401 add unauthorized message
     if (error.status === 401) {
       errorMessages = ['No tienes permisos para realizar esta acción, favor de iniciar sesión'];
       errorMessage = 'No tienes permisos para realizar esta acción, favor de iniciar sesión';

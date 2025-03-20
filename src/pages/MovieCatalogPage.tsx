@@ -13,12 +13,12 @@ const MovieCatalogPage: React.FC = () => {
   const [error, setError] = useState<string | string[] | Record<string, any> | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   
-  // Estados para los modales
+  // RCC States for the modals
   const [isFormModalOpen, setIsFormModalOpen] = useState<boolean>(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
   const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
   
-  // Estados para control de operaciones
+  // RCC States for the processing of actions
   const [processingAction, setProcessingAction] = useState<boolean>(false);
 
   useEffect(() => {
@@ -44,7 +44,7 @@ const MovieCatalogPage: React.FC = () => {
     }
   };
   
-  // Manejadores para acciones CRUD
+  // RCC Handlers for CRUD actions
   const handleOpenCreateModal = () => {
     setSelectedMovie(null);
     setIsFormModalOpen(true);
@@ -65,17 +65,17 @@ const MovieCatalogPage: React.FC = () => {
     setIsDeleteModalOpen(false);
   };
   
-  // Función para manejar la creación o actualización de una película
+  // RCC Function to handle the creation or update of a movie
   const handleSaveMovie = async (movieData: any) => {
     try {
       setProcessingAction(true);
       setError(null);
       
       if (selectedMovie) {
-        // Estamos actualizando una película existente
-        // Incluir el ID en el objeto de datos para la actualización
+        // RCC We are updating an existing movie
+        // RCC Include the ID in the data object for the update
         const updatedMovieData = {
-          id: selectedMovie.id, // Importante: incluir el ID en el objeto
+          id: selectedMovie.id, // Important: include the ID in the object
           ...movieData
         };
         
@@ -83,14 +83,14 @@ const MovieCatalogPage: React.FC = () => {
         
         if (response.success) {
           setSuccessMessage(`Película "${movieData.titulo}" actualizada correctamente`);
-          // Actualizar la lista de películas
+          // RCC Update the list of movies
           setMovies(movies.map(movie => 
             movie.id === selectedMovie.id ? { ...movie, ...movieData } : movie
           ));
-          // Cerrar el modal después de una operación exitosa
+          // RCC Close the modal after a successful operation
           setIsFormModalOpen(false);
         } else {
-          // Manejar diferentes tipos de respuestas de error
+          // RCC Handle different types of error responses
           if (response.errors) {            
             if (Array.isArray(response.errors)) {
               setError(response.errors);
@@ -104,17 +104,17 @@ const MovieCatalogPage: React.FC = () => {
           }
         }
       } else {
-        // Estamos creando una nueva película
+        // RCC We are creating a new movie
         const response = await createMovie(movieData);
         
         if (response.success) {
           setSuccessMessage(`Película "${movieData.titulo}" creada correctamente`);
-          // Refrescar la lista completa para obtener el nuevo ID
+          // RCC Refresh the full list to get the new ID
           await fetchMovies();
-          // Cerrar el modal después de una operación exitosa
+          // RCC Close the modal after a successful operation
           setIsFormModalOpen(false);
         } else {
-          // Manejar diferentes tipos de respuestas de error
+          // RCC Handle different types of error responses
           if (response.errors) {
             if (Array.isArray(response.errors)) {
               setError(response.errors);
@@ -136,7 +136,7 @@ const MovieCatalogPage: React.FC = () => {
     }
   };
   
-  // Función para eliminar una película
+  // RCC Function to delete a movie
   const handleDeleteMovie = async () => {
     if (!selectedMovie) return;
     
@@ -147,13 +147,13 @@ const MovieCatalogPage: React.FC = () => {
       
       if (response.success) {
         setSuccessMessage(`Película "${selectedMovie.titulo}" eliminada correctamente`);
-        // Eliminar la película de la lista local
+        // RCC Delete the movie from the local list
         setMovies(movies.filter(movie => movie.id !== selectedMovie.id));
       } else {
         setError(response.message || 'Error al eliminar la película');
       }
       
-      // Cerrar el modal después de la operación
+      // RCC Close the modal after the operation
       setIsDeleteModalOpen(false);
     } catch (err) {
       setError('Error al procesar la eliminación');
@@ -163,7 +163,7 @@ const MovieCatalogPage: React.FC = () => {
     }
   };
   
-  // Limpiar mensaje de éxito después de un tiempo
+  // RCC Clean success message after a time
   useEffect(() => {
     if (successMessage) {
       const timer = setTimeout(() => {
@@ -199,7 +199,7 @@ const MovieCatalogPage: React.FC = () => {
           </button>
         </div>
         
-        {/* Mensajes de éxito o error */}
+        {/* RCC Success or error messages */}
         {successMessage && (
           <div className="alert alert-success alert-dismissible fade show" role="alert">
             {successMessage}
@@ -244,7 +244,7 @@ const MovieCatalogPage: React.FC = () => {
           </div>
         )}
 
-        {/* Vista en tarjetas para pantallas grandes */}
+        {/* RCC Card view for large screens */}
         <div className="d-none d-md-block">
           {loading && (
             <div className="text-center my-3">
@@ -322,7 +322,7 @@ const MovieCatalogPage: React.FC = () => {
           )}
         </div>
         
-        {/* Vista en tabla para pantallas pequeñas */}
+        {/* RCC Table view for small screens */}
         <div className="d-md-none">
           <div className="card">
             <div className="card-body">
@@ -390,7 +390,7 @@ const MovieCatalogPage: React.FC = () => {
         </div>
       </div>
       
-      {/* Modal para crear/editar película */}
+      {/* RCC Modal to create/edit movie */}
       <Modal 
         isOpen={isFormModalOpen} 
         onClose={handleCloseModals}
@@ -403,7 +403,7 @@ const MovieCatalogPage: React.FC = () => {
         />
       </Modal>
       
-      {/* Modal de confirmación para eliminar */}
+      {/* RCC Confirmation modal to delete */}
       <Modal 
         isOpen={isDeleteModalOpen} 
         onClose={handleCloseModals}

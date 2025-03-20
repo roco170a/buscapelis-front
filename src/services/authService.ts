@@ -1,11 +1,11 @@
 import { LoginRequest, RegisterRequest, AuthResponse, UserData } from '../interfaces/Auth';
 
-// Definimos la URL base de la API
-const API_URL = 'http://localhost:5278';
+// RCC Define the base API URL from environment variables
+const API_URL = import.meta.env.VITE_API_URL;
 
 export const login = async (credentials: LoginRequest): Promise<AuthResponse> => {
   try {
-    const response = await fetch(`${API_URL}/api/Usuarios/login`, {
+    const response = await fetch(`${API_URL}/Usuarios/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -28,7 +28,7 @@ export const login = async (credentials: LoginRequest): Promise<AuthResponse> =>
 
 export const register = async (userData: RegisterRequest): Promise<AuthResponse> => {
   try {
-    const response = await fetch(`${API_URL}/api/Usuarios/registro`, {
+    const response = await fetch(`${API_URL}/Usuarios/registro`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -78,7 +78,7 @@ export const getMoviesByActor = async (actorId: number) => {
 
 export const createMovie = async (movieData: any) => {
   try {
-    // Verificar que los actores tengan la estructura correcta
+    // RCC Verify that the actors have the correct structure
     if (movieData.actores && Array.isArray(movieData.actores)) {
       movieData.actores = movieData.actores.map((actor: any) => ({
         actorId: actor.actorId,
@@ -87,8 +87,6 @@ export const createMovie = async (movieData: any) => {
       }));
     }
     
-    console.log('Datos enviados al crear película:', JSON.stringify(movieData, null, 2));
-    console.log('Actores enviados:', JSON.stringify(movieData.actores, null, 2));
     const response = await apiClient.post<SingleMovieResponse>('/Peliculas', movieData);
     return response.data;
   } catch (error: any) {
@@ -99,7 +97,7 @@ export const createMovie = async (movieData: any) => {
     let errorMessages: string[] = ['Error de conexión con el servidor'];
     let errorMessage = 'Error al crear la película';
 
-    // Si es 401 agregar mensaje de no autorizado
+    // RCC If 401 add unauthorized message
     if (error.status === 401) {
       errorMessages = ['No tienes permisos para realizar esta acción, favor de iniciar sesión'];
     }
@@ -107,17 +105,17 @@ export const createMovie = async (movieData: any) => {
     if (error.response?.data) {
       const responseData = error.response.data;
       
-      // Comprobar si hay mensajes de error específicos
+      // RCC Check if there are specific error messages
       if (responseData.message) {
         errorMessage = responseData.message;
       }
       
-      // Comprobar si hay errores de validación
+      // RCC Check if there are validation errors
       if (responseData.errors) {
         if (Array.isArray(responseData.errors)) {
           errorMessages = responseData.errors;
         } else if (typeof responseData.errors === 'object') {
-          // Convertir errores de validación en mensajes legibles
+          // RCC Convert validation errors to readable messages
           errorMessages = Object.entries(responseData.errors).map(
             ([field, messages]) => `${field}: ${Array.isArray(messages) ? messages.join(', ') : messages}`
           );
@@ -136,7 +134,7 @@ export const createMovie = async (movieData: any) => {
 
 export const updateMovie = async (id: number, movieData: any) => {
   try {
-    // Verificar que los actores tengan la estructura correcta
+    // RCC Verify that the actors have the correct structure
     if (movieData.actores && Array.isArray(movieData.actores)) {
       movieData.actores = movieData.actores.map((actor: any) => ({
         actorId: actor.actorId,
@@ -144,20 +142,17 @@ export const updateMovie = async (id: number, movieData: any) => {
         personaje: actor.personaje || 'Personaje sin especificar'
       }));
     }
-    
-    console.log(`Datos enviados al actualizar película ${id}:`, JSON.stringify(movieData, null, 2));
-    console.log('Actores enviados en actualización:', JSON.stringify(movieData.actores, null, 2));
+
     const response = await apiClient.put<SingleMovieResponse>(`/Peliculas/${id}`, movieData);
     return response.data;
   } catch (error: any) {
-    console.error(`Error updating movie with id ${id}:`, error);
-    console.error('Response data:', error.response?.data);
+
     
-    // Extraer errores de validación
+    // RCC Extract validation errors
     let errorMessages: string[] = ['Error de conexión con el servidor'];
     let errorMessage = `Error al actualizar la película con ID ${id}`;
     
-    // Si es 401 agregar mensaje de no autorizado
+    // RCC If 401 add unauthorized message
     if (error.status === 401) {
       errorMessages = ['No tienes permisos para realizar esta acción, favor de iniciar sesión'];
     }
@@ -165,17 +160,17 @@ export const updateMovie = async (id: number, movieData: any) => {
     if (error.response?.data) {
       const responseData = error.response.data;      
 
-      // Comprobar si hay mensajes de error específicos
+      // RCC Check if there are specific error messages
       if (responseData.message) {
         errorMessage = responseData.message;
       }
       
-      // Comprobar si hay errores de validación
+      // RCC Check if there are validation errors
       if (responseData.errors) {
         if (Array.isArray(responseData.errors)) {
           errorMessages = responseData.errors;
         } else if (typeof responseData.errors === 'object') {
-          // Convertir errores de validación en mensajes legibles
+          // RCC Convert validation errors to readable messages
           errorMessages = Object.entries(responseData.errors).map(
             ([field, messages]) => `${field}: ${Array.isArray(messages) ? messages.join(', ') : messages}`
           );
@@ -203,7 +198,7 @@ export const deleteMovie = async (id: number) => {
 
     console.error(`Error deleting movie with id ${id}:`, error);
 
-    // Si es 401 agregar mensaje de no autorizado
+    // RCC If 401 add unauthorized message
     if (error.status === 401) {
       errorMessages = ['No tienes permisos para realizar esta acción, favor de iniciar sesión'];
       errorMessage = 'No tienes permisos para realizar esta acción, favor de iniciar sesión';

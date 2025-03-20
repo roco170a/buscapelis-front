@@ -16,12 +16,12 @@ const GenreForm: React.FC<GenreFormProps> = ({ genre, onSave, onCancel }) => {
   
   useEffect(() => {
     if (genre) {
-      // Si existe un género, configuramos los datos del formulario
+      // RCC If there is a genre, we configure the form data
       setFormData({
         nombre: genre.nombre || ''
       });
     } else {
-      // Si estamos creando un nuevo género, reseteamos el formulario
+      // RCC If we are creating a new genre, we reset the form
       setFormData({
         nombre: ''
       });
@@ -48,7 +48,7 @@ const GenreForm: React.FC<GenreFormProps> = ({ genre, onSave, onCancel }) => {
       [name]: value
     });
     
-    // Limpiar el error cuando se modifica el campo
+    // RCC Clean the error when the field is modified
     if (errors[name]) {
       setErrors({
         ...errors,
@@ -61,10 +61,10 @@ const GenreForm: React.FC<GenreFormProps> = ({ genre, onSave, onCancel }) => {
     e.preventDefault();
     
     if (validateForm()) {
-      // Si estamos editando, asegurarse de que estamos incluyendo
-      // todos los datos originales que no modificamos
+      // RCC If we are editing, ensure that we are including
+      // all the original data that we did not modify
       if (genre) {
-        // Conservar el ID original para evitar errores de validación en el backend
+        // RCC Preserve the original ID to avoid validation errors in the backend
         onSave({
           id: genre.id,
           ...formData

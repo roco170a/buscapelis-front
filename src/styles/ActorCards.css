@@ -1,4 +1,4 @@
-/* Estilos específicos para las tarjetas de actores en la página de detalle de película */
+/* RCC Specific styles for actor cards on the movie detail page */
 .movie-detail-actor-card {
   position: relative;
   overflow: hidden;
@@ -24,7 +24,7 @@
 
 .movie-detail-actor-card:hover .movie-detail-actor-photo {
   transform: scale(1.1);
-  height: 300px; /* Se expande al hacer hover */
+  height: 300px; /* RCC Expands when hovering */
 }
 
 .movie-detail-actor-info {
@@ -54,7 +54,7 @@
   opacity: 0.8;
 }
 
-/* Etiqueta que aparece al hacer hover */
+/* RCC Label that appears when hovering */
 .movie-detail-actor-hover-label {
   position: absolute;
   top: 0;
@@ -72,7 +72,7 @@
   transform: translateY(0);
 }
 
-/* Media query para dispositivos móviles */
+/* RCC Media query for mobile devices */
 @media (max-width: 767px) {
   .movie-detail-actor-photo {
     height: 220px;

@@ -45,7 +45,9 @@ const HomePage: React.FC = () => {
           <div className="row">
             <div className="col-md-8 offset-md-2 text-center">
               <p className="lead mb-4">                
-                Demostracion con fines educativos de despliegue de aplicación de repositorio GitHub: <a href="https://github.com/juanpabon/PeliculasAPI" target="_blank" rel="noopener noreferrer">https://github.com/juanpabon/PeliculasAPI</a>
+                Demostracion con fines educativos de despliegue de aplicación de repositorio GitHub:<br/> 
+                  <a href="https://github.com/roco170a/buscapelis-back" target="_blank" rel="noopener noreferrer">Backend</a> &nbsp;
+                  <a href="https://github.com/roco170a/buscapelis-front" target="_blank" rel="noopener noreferrer">FrontEnd</a>
               </p>
               <h1 className="display-4 mb-4">Encuentra tus películas favoritas</h1>
               <p className="lead mb-4">

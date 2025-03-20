@@ -8,7 +8,6 @@ export const getActors = async () => {
   } catch (error: any) {
     console.error('Error fetching actors:', error);
     
-    // Crear una respuesta de error formateada
     return {
       success: false,
       message: error.response?.data?.message || 'Error al obtener los actores',
@@ -36,7 +35,7 @@ export const getActorById = async (id: number) => {
 
 export const createActor = async (actorData: any) => {
   try {
-    console.log('Datos enviados al crear actor:', actorData);
+    
     const response = await apiClient.post<ActorResponse>('/Actores', actorData);
     return response.data;
   } catch (error: any) {
@@ -46,7 +45,7 @@ export const createActor = async (actorData: any) => {
     let errorMessages: string[] = ['Error de conexión con el servidor'];
     let errorMessage = 'Error al crear el actor';
 
-    // Si es 401 agregar mensaje de no autorizado
+    // RCC If 401 add unauthorized message
     if (error.status === 401) {
       errorMessages = ['No tienes permisos para realizar esta acción, favor de iniciar sesión'];
       errorMessage = 'No tienes permisos para realizar esta acción, favor de iniciar sesión';
@@ -63,7 +62,7 @@ export const createActor = async (actorData: any) => {
 
 export const updateActor = async (id: number, actorData: any) => {
   try {
-    console.log(`Datos enviados al actualizar actor ${id}:`, actorData);
+
     const response = await apiClient.put<ActorResponse>(`/Actores/${id}`, actorData);
     return response.data;
   } catch (error: any) {
@@ -73,7 +72,7 @@ export const updateActor = async (id: number, actorData: any) => {
     console.error(`Error updating actor with id ${id}:`, error);
     console.error('Response data:', error.response?.data);
     
-    // Si es 401 agregar mensaje de no autorizado
+    // RCC If 401 add unauthorized message
     if (error.status === 401) {
       errorMessages = ['No tienes permisos para realizar esta acción, favor de iniciar sesión'];
       errorMessage = 'No tienes permisos para realizar esta acción, favor de iniciar sesión';
@@ -98,7 +97,7 @@ export const deleteActor = async (id: number) => {
 
     console.error(`Error deleting actor with id ${id}:`, error);
 
-    // Si es 401 agregar mensaje de no autorizado
+    // RCC If 401 add unauthorized message
     if (error.status === 401) {
       errorMessages = ['No tienes permisos para realizar esta acción, favor de iniciar sesión'];
       errorMessage = 'No tienes permisos para realizar esta acción, favor de iniciar sesión';

@@ -12,12 +12,12 @@ const GenreCatalogPage: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   
-  // Estados para los modales
+  // RCC States for the modals
   const [isFormModalOpen, setIsFormModalOpen] = useState<boolean>(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
   const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
   
-  // Estados para control de operaciones
+  // RCC States for the processing of actions
   const [processingAction, setProcessingAction] = useState<boolean>(false);
 
   useEffect(() => {
@@ -43,7 +43,7 @@ const GenreCatalogPage: React.FC = () => {
     }
   };
   
-  // Manejadores para acciones CRUD
+  // RCC Handlers for CRUD actions
   const handleOpenCreateModal = () => {
     setSelectedGenre(null);
     setIsFormModalOpen(true);
@@ -64,16 +64,16 @@ const GenreCatalogPage: React.FC = () => {
     setIsDeleteModalOpen(false);
   };
   
-  // Función para manejar la creación o actualización de un género
+  // RCC Function to handle the creation or update of a genre
   const handleSaveGenre = async (genreData: any) => {
     try {
       setProcessingAction(true);
       
       if (selectedGenre) {
-        // Estamos actualizando un género existente
-        // Incluir el ID en el objeto de datos para la actualización
+        // RCC We are updating an existing genre
+        // RCC Include the ID in the data object for the update
         const updatedGenreData = {
-          id: selectedGenre.id, // Importante: incluir el ID en el objeto
+          id: selectedGenre.id, // Important: include the ID in the object
           ...genreData
         };
         
@@ -81,7 +81,7 @@ const GenreCatalogPage: React.FC = () => {
         
         if (response.success) {
           setSuccessMessage(`Género "${genreData.nombre}" actualizado correctamente`);
-          // Actualizar la lista de géneros
+          // RCC Update the list of genres
           setGenres(genres.map(genre => 
             genre.id === selectedGenre.id ? { ...genre, ...genreData } : genre
           ));
@@ -89,19 +89,19 @@ const GenreCatalogPage: React.FC = () => {
           setError(response.message || 'Error al actualizar el género');
         }
       } else {
-        // Estamos creando un nuevo género
+        // RCC We are creating a new genre
         const response = await createGenre(genreData);
         
         if (response.success) {
           setSuccessMessage(`Género "${genreData.nombre}" creado correctamente`);
-          // Refrescar la lista completa para obtener el nuevo ID
+          // RCC Refresh the full list to get the new ID
           await fetchGenres();
         } else {
           setError(response.message || 'Error al crear el género');
         }
       }
       
-      // Cerrar el modal después de la operación
+      // RCC Close the modal after the operation
       setIsFormModalOpen(false);
     } catch (err) {
       setError('Error al procesar la operación');
@@ -111,7 +111,7 @@ const GenreCatalogPage: React.FC = () => {
     }
   };
   
-  // Función para eliminar un género
+  // RCC Function to delete a genre
   const handleDeleteGenre = async () => {
     if (!selectedGenre) return;
     
@@ -122,13 +122,13 @@ const GenreCatalogPage: React.FC = () => {
       
       if (response.success) {
         setSuccessMessage(`Género "${selectedGenre.nombre}" eliminado correctamente`);
-        // Eliminar el género de la lista local
+        // RCC Delete the genre from the local list
         setGenres(genres.filter(genre => genre.id !== selectedGenre.id));
       } else {
         setError(response.message || 'Error al eliminar el género');
       }
       
-      // Cerrar el modal después de la operación
+      // RCC Close the modal after the operation
       setIsDeleteModalOpen(false);
     } catch (err) {
       setError('Error al procesar la eliminación');
@@ -138,7 +138,7 @@ const GenreCatalogPage: React.FC = () => {
     }
   };
   
-  // Limpiar mensaje de éxito después de un tiempo
+  // RCC Clean success message after a time
   useEffect(() => {
     if (successMessage) {
       const timer = setTimeout(() => {
@@ -174,7 +174,7 @@ const GenreCatalogPage: React.FC = () => {
           </button>
         </div>
         
-        {/* Mensajes de éxito o error */}
+        {/* RCC Success or error messages */}
         {successMessage && (
           <div className="alert alert-success alert-dismissible fade show" role="alert">
             {successMessage}
@@ -260,7 +260,7 @@ const GenreCatalogPage: React.FC = () => {
         </div>
       </div>
       
-      {/* Modal para crear/editar género */}
+      {/* RCC Modal to create/edit genre */}
       <Modal 
         isOpen={isFormModalOpen} 
         onClose={handleCloseModals}
@@ -272,7 +272,7 @@ const GenreCatalogPage: React.FC = () => {
         />
       </Modal>
       
-      {/* Modal de confirmación para eliminar */}
+      {/* RCC Confirmation modal to delete */}
       <Modal 
         isOpen={isDeleteModalOpen} 
         onClose={handleCloseModals}

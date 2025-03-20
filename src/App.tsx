@@ -30,12 +30,12 @@ const App: React.FC = () => {
               <Route path="/login" element={<LoginPage />} />
               <Route path="/registro" element={<RegisterPage />} />
               
-              {/* Rutas protegidas que requieren autenticación */}
+              {/* Protected routes that require authentication */}
               <Route element={<PrivateRoute />}>
-                {/* Aquí irían rutas que requieren autenticación */}
+                {/* Here would be routes that require authentication */}
               </Route>
               
-              {/* Rutas protegidas que requieren un rol específico */}
+              {/* Protected routes that require a specific role */}
               <Route element={<PrivateRoute requireRole="Admin" />}>
                 <Route path="/catalogo/usuarios" element={<div className="container my-5"><h1>Administración de Usuarios</h1></div>} />
               </Route>

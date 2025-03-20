@@ -19,17 +19,17 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({ requireRole }) => {
     );
   }
 
-  // Verificar si el usuario está autenticado
+  // RCC Check if the user is authenticated
   if (!isAuthenticated) {
     return <Navigate to="/login" replace />;
   }
 
-  // Si se requiere un rol específico, verificar si el usuario tiene ese rol
+  // RCC If a specific role is required, check if the user has that role
   if (requireRole && user?.role !== requireRole) {
     return <Navigate to="/" replace />;
   }
 
-  // Si todo está bien, renderizar los componentes hijos
+  // RCC If everything is ok, render the child components
   return <Outlet />;
 };
 

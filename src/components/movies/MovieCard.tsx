@@ -8,17 +8,17 @@ interface MovieCardProps {
 }
 
 const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
-  // Obtener el género principal (primero en la lista)
+  // RCC Get the main genre (first in the list)
   const mainGenre = movie.generos && movie.generos.length > 0 
     ? movie.generos[0].nombreGenero 
     : 'Sin género';
 
-  // Obtener lista de actores
+  // RCC Get the list of actors
   const actorNames = movie.actores && movie.actores.length > 0
     ? movie.actores.map(actor => actor.nombreActor).join(', ')
     : 'Sin actores';
 
-  // URL de imagen fallback en caso de que la película no tenga una
+  // RCC Image URL fallback in case the movie does not have one
   const imageFallback = 'nofound.jpg';
 
   return (

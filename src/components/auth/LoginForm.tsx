@@ -17,7 +17,7 @@ const LoginForm: React.FC = () => {
     const { name, value } = e.target;
     setCredentials({ ...credentials, [name]: value });
     
-    // Limpiar el error del campo cuando se modifica
+    // RCC Clean the error of the field when it is modified
     if (formErrors[name]) {
       setFormErrors({ ...formErrors, [name]: '' });
     }

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { Actor } from '../interfaces/Actor';
 import { getActors, createActor, updateActor, deleteActor } from '../services/actorService';
 import ActorForm from '../components/actors/ActorForm';
@@ -44,7 +43,7 @@ const ActorCatalogPage: React.FC = () => {
     }
   };
   
-  // Manejadores para acciones CRUD
+  // RCC Handlers for CRUD actions
   const handleOpenCreateModal = () => {
     setSelectedActor(null);
     setIsFormModalOpen(true);
@@ -65,16 +64,16 @@ const ActorCatalogPage: React.FC = () => {
     setIsDeleteModalOpen(false);
   };
   
-  // Función para manejar la creación o actualización de un actor
+  // RCC Function to handle the creation or update of an actor
   const handleSaveActor = async (actorData: any) => {
     try {
       setProcessingAction(true);
       
       if (selectedActor) {
-        // Estamos actualizando un actor existente
-        // Incluir el ID en el objeto de datos para la actualización
+        // RCC We are updating an existing actor
+        // RCC Include the ID in the data object for the update
         const updatedActorData = {
-          id: selectedActor.id, // Importante: incluir el ID en el objeto
+          id: selectedActor.id, // Important: include the ID in the object
           ...actorData
         };
         
@@ -82,7 +81,7 @@ const ActorCatalogPage: React.FC = () => {
         
         if (response.success) {
           setSuccessMessage(`Actor "${actorData.nombre}" actualizado correctamente`);
-          // Actualizar la lista de actores
+          // RCC Update the list of actors
           setActors(actors.map(actor => 
             actor.id === selectedActor.id ? { ...actor, ...actorData } : actor
           ));
@@ -90,19 +89,19 @@ const ActorCatalogPage: React.FC = () => {
           setError(response.message || 'Error al actualizar el actor');
         }
       } else {
-        // Estamos creando un nuevo actor
+        // RCC We are creating a new actor
         const response = await createActor(actorData);
         
         if (response.success) {
           setSuccessMessage(`Actor "${actorData.nombre}" creado correctamente`);
-          // Refrescar la lista completa para obtener el nuevo ID
+          // RCC Refresh the full list to get the new ID
           await fetchActors();
         } else {
           setError(response.message || 'Error al crear el actor');
         }
       }
       
-      // Cerrar el modal después de la operación
+      // RCC Close the modal after the operation
       setIsFormModalOpen(false);
     } catch (err) {
       setError('Error al procesar la operación');
@@ -112,7 +111,7 @@ const ActorCatalogPage: React.FC = () => {
     }
   };
   
-  // Función para eliminar un actor
+  // RCC Function to delete an actor
   const handleDeleteActor = async () => {
     if (!selectedActor) return;
     
@@ -123,13 +122,13 @@ const ActorCatalogPage: React.FC = () => {
       
       if (response.success) {
         setSuccessMessage(`Actor "${selectedActor.nombre}" eliminado correctamente`);
-        // Eliminar el actor de la lista local
+        // RCC Delete the actor from the local list
         setActors(actors.filter(actor => actor.id !== selectedActor.id));
       } else {
         setError(response.message || 'Error al eliminar el actor');
       }
       
-      // Cerrar el modal después de la operación
+      // RCC Close the modal after the operation
       setIsDeleteModalOpen(false);
     } catch (err) {
       setError('Error al procesar la eliminación');
@@ -139,7 +138,7 @@ const ActorCatalogPage: React.FC = () => {
     }
   };
   
-  // Limpiar mensaje de éxito después de un tiempo
+  // RCC Clean success message after a time
   useEffect(() => {
     if (successMessage) {
       const timer = setTimeout(() => {
@@ -175,7 +174,7 @@ const ActorCatalogPage: React.FC = () => {
           </button>
         </div>
         
-        {/* Mensajes de éxito o error */}
+        {/* RCC Success or error messages */}
         {successMessage && (
           <div className="alert alert-success alert-dismissible fade show" role="alert">
             {successMessage}
@@ -270,7 +269,7 @@ const ActorCatalogPage: React.FC = () => {
         </div>
       </div>
       
-      {/* Modal para crear/editar actor */}
+      {/* RCC Modal to create/edit actor */}
       <Modal 
         isOpen={isFormModalOpen} 
         onClose={handleCloseModals}
@@ -282,7 +281,7 @@ const ActorCatalogPage: React.FC = () => {
         />
       </Modal>
       
-      {/* Modal de confirmación para eliminar */}
+      {/* RCC Confirmation modal to delete */}
       <Modal 
         isOpen={isDeleteModalOpen} 
         onClose={handleCloseModals}

@@ -15,11 +15,11 @@ const Modal: React.FC<ModalProps> = ({
   size 
 }) => {
   useEffect(() => {
-    // Prevenir scroll del body cuando el modal está abierto
+    // RCC Prevent scroll of the body when the modal is open
     if (isOpen) {
       document.body.classList.add('modal-open');
       
-      // Añadir backdrop si no existe
+      // RCC Add backdrop if it does not exist
       if (!document.querySelector('.modal-backdrop')) {
         const backdrop = document.createElement('div');
         backdrop.className = 'modal-backdrop fade show';
@@ -28,14 +28,14 @@ const Modal: React.FC<ModalProps> = ({
     } else {
       document.body.classList.remove('modal-open');
       
-      // Remover backdrop
+      // RCC Remove backdrop
       const backdrop = document.querySelector('.modal-backdrop');
       if (backdrop) {
         document.body.removeChild(backdrop);
       }
     }
     
-    // Cleanup al desmontar
+    // RCC Cleanup when unmounting
     return () => {
       document.body.classList.remove('modal-open');
       const backdrop = document.querySelector('.modal-backdrop');
@@ -47,10 +47,10 @@ const Modal: React.FC<ModalProps> = ({
   
   if (!isOpen) return null;
   
-  // Clase para el tamaño del modal
+  // RCC Class for the modal size
   const sizeClass = size ? `modal-${size}` : '';
   
-  // Usar createPortal para renderizar el modal al final del DOM
+  // RCC Use createPortal to render the modal at the end of the DOM
   return ReactDOM.createPortal(
     <div 
       className="modal fade show" 
@@ -59,7 +59,7 @@ const Modal: React.FC<ModalProps> = ({
       role="dialog" 
       aria-modal="true"
       onClick={(e) => {
-        // Cerrar al hacer clic en el fondo
+        // RCC Close when clicking on the background
         if (e.target === e.currentTarget) {
           onClose();
         }

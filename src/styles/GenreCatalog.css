@@ -1,4 +1,3 @@
-/* Estilos para el catálogo de géneros */
 .genre-catalog-page {
   min-height: 80vh;
 }
@@ -64,7 +63,6 @@
   border-color: #bd2130;
 }
 
-/* Estilos para modales */
 .modal-content {
   border-radius: 0.5rem;
   border: none;
@@ -92,7 +90,6 @@
   padding: 1rem;
 }
 
-/* Estilos para formularios */
 .form-label {
   color: #495057;
   font-weight: 500;
@@ -107,7 +104,6 @@
   font-size: 0.8rem;
 }
 
-/* Estilos para alertas */
 .alert {
   margin-bottom: 1.5rem;
   border-radius: 0.25rem;

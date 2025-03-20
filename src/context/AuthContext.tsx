@@ -6,7 +6,7 @@ import {
   login as loginService,
   register as registerService
 } from '../services/authService';
-import { LoginRequest, RegisterRequest, User, UserData } from '../interfaces/Auth';
+import { LoginRequest, RegisterRequest, User } from '../interfaces/Auth';
 
 interface AuthContextType {
   user: User | null;
@@ -58,7 +58,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       if (response.success) {
         const userData = response.data;
         
-        // Extraer role del token JWT
+          
+        // RCC Extract role from JWT token
         const tokenPayload = JSON.parse(atob(userData.token.split('.')[1]));
         const userWithRole: User = {
           ...userData,
@@ -91,13 +92,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       const response = await registerService(userData);
       
       if (response.success) {
-        // Después del registro, normalmente no iniciamos sesión automáticamente
-        // pero podríamos hacerlo si se quiere
+        // RCC After registration, we typically don't log in automatically
+        // RCC but we could do it if desired
         setLoading(false);
         return true;
       } else {        
         setError(response.message || response.errors?.[0] || 'Error de registro');
-        // Si hay errores adicionales, mostrar el primer error
+        // RCC If there are additional errors, show the first one
         if (response.errors?.length > 0) {
           setError(response.errors[0]);
         }
